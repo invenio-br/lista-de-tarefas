@@ -1,27 +1,4 @@
-<%= form_with(model: tarefa) do |form| %>
-  <% if tarefa.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(tarefa.errors.count, "error") %> prohibited this tarefa from being saved:</h2>
-
-      <ul>
-        <% tarefa.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div>
-    <%= form.label :nome, style: "display: block" %>
-    <%= form.text_field :nome %>
-  </div>
-
-  <div>
-    <%= form.label :resolvida, style: "display: block" %>
-    <%= form.check_box :resolvida %>
-  </div>
-
-  <div>
-    <%= form.submit %>
-  </div>
+<%= form_with(model: tarefa, id: 'input') do |form| %>
+  <%= form.text_field :nome, class: 'form-control' %>
+  <%= form.button :submit, class: 'submit-btn' %>
 <% end %>

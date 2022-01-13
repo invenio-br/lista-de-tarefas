@@ -1,12 +1,12 @@
-<div id="<%= dom_id tarefa %>">
-  <p>
-    <strong>Nome:</strong>
-    <%= tarefa.nome %>
-  </p>
-
-  <p>
-    <strong>Resolvida:</strong>
-    <%= tarefa.resolvida %>
-  </p>
-
+<div class="cards">
+  <button class="fas fa-check btn resolved-btn" type="button"></button>
+  <div class="cards-info">
+    <h3 class="task">
+      <%= tarefa.nome %>
+    </h3>
+    <p class="time">
+      <%= tarefa.created_at %>
+    </p>
+  </div>
+  <%= button_to '', tarefa, method: :delete, class: 'fas fa-times btn delete-btn' %>
 </div>

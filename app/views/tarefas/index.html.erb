@@ -1,14 +1,14 @@
-<p style="color: green"><%= notice %></p>
-
-<h1>Tarefas</h1>
-
 <div id="tarefas">
-  <% @tarefas.each do |tarefa| %>
-    <%= render tarefa %>
-    <p>
-      <%= link_to "Show this tarefa", tarefa %>
+  <header>
+    <h2 id="date"><%= Date.today %></h2>
+    <p id="task-count">
+      <%= @tarefas.count %> tarefas
     </p>
-  <% end %>
+    <%= render 'form', tarefa: Tarefa.new %>
+  </header>
+  <div id="list">
+    <% @tarefas.each do |tarefa| %>
+      <%= render tarefa %>
+    <% end %>
+  </div>
 </div>
-
-<%= link_to "New tarefa", new_tarefa_path %>
