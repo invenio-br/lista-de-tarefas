@@ -1,4 +1,4 @@
 <%= form_with(model: tarefa, id: 'input') do |form| %>
-  <%= form.text_field :nome, class: 'form-control' %>
+  <%= form.text_field :nome, class: 'form-control', required: true %>
   <%= form.button :submit, class: 'submit-btn' %>
 <% end %>

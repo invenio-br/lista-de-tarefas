@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
-  resources :tarefas
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  resources :tarefas, only: [:index, :create, :update, :destroy]
 
-  # Defines the root path route ("/")
-  # root "articles#index"
+  root "tarefas#index"
 end

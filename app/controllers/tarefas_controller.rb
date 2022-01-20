@@ -1,60 +1,32 @@
 class TarefasController < ApplicationController
-  before_action :set_tarefa, only: %i[ show edit update destroy ]
+  before_action :set_tarefa, only: %i[ update destroy ]
 
   # GET /tarefas or /tarefas.json
   def index
-    @tarefas = Tarefa.all
-  end
-
-  # GET /tarefas/1 or /tarefas/1.json
-  def show
-  end
-
-  # GET /tarefas/new
-  def new
-    @tarefa = Tarefa.new
-  end
-
-  # GET /tarefas/1/edit
-  def edit
+    @tarefas = Tarefa.order created_at: :desc
   end
 
   # POST /tarefas or /tarefas.json
   def create
     @tarefa = Tarefa.new(tarefa_params)
+    @tarefa.save
 
-    respond_to do |format|
-      if @tarefa.save
-        format.html { redirect_to tarefas_url }
-        format.json { render :show, status: :created, location: @tarefa }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @tarefa.errors, status: :unprocessable_entity }
-      end
-    end
+    redirect_to tarefas_url
   end
 
   # PATCH/PUT /tarefas/1 or /tarefas/1.json
   def update
-    respond_to do |format|
-      if @tarefa.update(tarefa_params)
-        format.html { redirect_to tarefa_url(@tarefa), notice: "Tarefa was successfully updated." }
-        format.json { render :show, status: :ok, location: @tarefa }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @tarefa.errors, status: :unprocessable_entity }
-      end
-    end
+    @tarefa.resolvida = !@tarefa.resolvida
+    @tarefa.save
+
+    redirect_to tarefas_url
   end
 
   # DELETE /tarefas/1 or /tarefas/1.json
   def destroy
     @tarefa.destroy
 
-    respond_to do |format|
-      format.html { redirect_to tarefas_url }
-      format.json { head :no_content }
-    end
+    redirect_to tarefas_url
   end
 
   private
